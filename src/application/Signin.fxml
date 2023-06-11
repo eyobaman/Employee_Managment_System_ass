@@ -14,7 +14,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="504.0" prefWidth="372.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SigninController">
    <children>
-      <AnchorPane fx:id="login_form" prefHeight="200.0" prefWidth="200.0" visible="false">
+      <AnchorPane fx:id="login_form" prefHeight="200.0" prefWidth="200.0">
          <children>
             <FontAwesomeIcon glyphName="USER" layoutX="161.0" layoutY="82.0" size="5.2em" />
             <Label alignment="CENTER" layoutX="118.0" layoutY="107.0" prefHeight="26.0" prefWidth="135.0" text="Sign In Account">
@@ -22,14 +22,16 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="login_username" layoutX="69.0" layoutY="160.0" prefHeight="32.0" prefWidth="227.0" promptText="Username" />
-            <PasswordField fx:id="login_password" layoutX="69.0" layoutY="204.0" prefHeight="32.0" prefWidth="227.0" promptText="password" />
-            <CheckBox fx:id="login_showPasswordbtn" layoutX="72.0" layoutY="252.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="25.0" prefWidth="104.0" text="Show Password" />
+            <TextField fx:id="login_username" layoutX="97.0" layoutY="161.0" prefHeight="32.0" prefWidth="227.0" promptText="Username" />
+            <PasswordField fx:id="login_password" layoutX="97.0" layoutY="204.0" prefHeight="32.0" prefWidth="227.0" promptText="password" />
+            <CheckBox fx:id="login_showPasswordbtn" layoutX="97.0" layoutY="252.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="25.0" prefWidth="104.0" text="Show Password" />
             <TextField fx:id="login_textField" layoutX="69.0" layoutY="204.0" prefHeight="32.0" prefWidth="227.0" promptText="Password" visible="false" />
-            <Button fx:id="login_loginbtn" layoutX="72.0" layoutY="304.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="220.0" text="Log In" />
-            <Label layoutX="119.0" layoutY="366.0" prefHeight="25.0" prefWidth="135.0" text="Complete Registeration" />
-            <Button fx:id="login_createAccountbtn" layoutX="76.0" layoutY="426.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="32.0" prefWidth="220.0" text="Create Account" />
-            <Hyperlink fx:id="login_forgetPassword" layoutX="194.0" layoutY="253.0" onAction="#switchForm" text="Forget Password?" />
+            <Button fx:id="login_loginbtn" layoutX="100.0" layoutY="300.0" mnemonicParsing="false" onAction="#login" prefHeight="32.0" prefWidth="220.0" text="Log In" />
+            <Label layoutX="143.0" layoutY="364.0" prefHeight="25.0" prefWidth="135.0" text="Complete Registeration" />
+            <Button fx:id="login_createAccountbtn" layoutX="101.0" layoutY="426.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="32.0" prefWidth="220.0" text="Create Account" />
+            <Hyperlink fx:id="login_forgetPassword" layoutX="220.0" layoutY="253.0" onAction="#switchForm" text="Forget Password?" />
+            <FontAwesomeIcon fx:id="login_close" glyphName="CLOSE" layoutX="322.0" layoutY="40.0" onMouseClicked="#close" size="2.5em" />
+            <ComboBox fx:id="login_choose" layoutX="22.0" layoutY="165.0" prefHeight="25.0" prefWidth="49.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="signup_form" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -51,6 +53,7 @@
             <TextField fx:id="signup_Answer" layoutX="66.0" layoutY="355.0" prefHeight="25.0" prefWidth="241.0" promptText="Answer" />
             <TextField fx:id="signup_passwordtxt" layoutX="65.0" layoutY="211.0" prefHeight="32.0" prefWidth="241.0" visible="false" />
             <TextField fx:id="signup_passwordtxtconfirm" layoutX="64.0" layoutY="252.0" prefHeight="32.0" prefWidth="241.0" visible="false" />
+            <FontAwesomeIcon fx:id="signup_close" glyphName="CLOSE" layoutX="328.0" layoutY="46.0" onMouseClicked="#close" size="2.5em" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="recoverPtwoform" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
@@ -66,9 +69,10 @@
             </Label>
             <PasswordField fx:id="recover2_newPassword" layoutX="80.0" layoutY="181.0" prefHeight="32.0" prefWidth="227.0" promptText="Enter New Password" />
             <PasswordField fx:id="recover2_confirmPassword" layoutX="80.0" layoutY="227.0" prefHeight="32.0" prefWidth="227.0" promptText="Confirm Password" />
+            <FontAwesomeIcon fx:id="recover2_close" glyphName="CLOSE" layoutX="323.0" layoutY="37.0" onMouseClicked="#close" size="2.5em" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="recoverPoneform" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="recoverPoneform" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
          <children>
             <FontAwesomeIcon glyphName="LOCK" layoutX="170.0" layoutY="58.0" size="4.3em" />
             <Label alignment="CENTER" layoutX="119.0" layoutY="65.0" prefHeight="26.0" prefWidth="135.0" text=" Recover Password 1/2" />
@@ -92,6 +96,7 @@
             <TextField fx:id="recover1_recoverycode" layoutX="84.0" layoutY="392.0" prefHeight="25.0" prefWidth="241.0" promptText="Enter Verification Code" />
             <TextField fx:id="recover1_username2" layoutX="83.0" layoutY="289.0" prefHeight="25.0" prefWidth="241.0" promptText="username" />
             <Button fx:id="recover1_proceed1" layoutX="131.0" layoutY="355.0" mnemonicParsing="false" onAction="#sendVerificationCode" prefHeight="19.0" prefWidth="112.0" text="Procced" />
+            <FontAwesomeIcon fx:id="recover1_close" glyphName="CLOSE" layoutX="335.0" layoutY="37.0" onMouseClicked="#close" size="2.5em" />
          </children>
       </AnchorPane>
    </children>

@@ -21,6 +21,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 
 //
 import java.util.ArrayList;
@@ -39,17 +40,36 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
 
 public class SigninController implements Initializable {
 
     @FXML
     private Button login_createAccountbtn;
+    
+    @FXML
+    private ComboBox<?> login_choose;
 
     @FXML
     private Hyperlink login_forgetPassword;
 
     @FXML
     private AnchorPane login_form;
+    
+    @FXML
+    private FontAwesomeIcon recover1_close;
+    
+    @FXML
+    private FontAwesomeIcon recover2_close;
+    
+    @FXML
+    private FontAwesomeIcon signup_close;
+
 
     @FXML
     private Button login_loginbtn;
@@ -198,37 +218,78 @@ public class SigninController implements Initializable {
     
 	
 	
+	
 	public void login() {
-		
-		alertMessage alert = new alertMessage();
-		
-		if(login_username.getText().isEmpty() || login_password.getText().isEmpty()){
-		
-			alert.errorMessage("Please fill your username and password field!");
-		}else{
-			
-			String selectData = " SELECT * FROM emp_info WHERE " + "username =? and password = ? ";
-			connect = connectDB();
-			try{
-				
-				prepare = connect.prepareStatement(selectData);
-				prepare.setString(1, login_username.getText());
-				prepare.setString(2, login_password.getText());
-				
-				result = prepare.executeQuery();
-				if(result.next()){
-					alert.successMessage("Successful");
-				}else {
-				alert.errorMessage("Incorrect username or password");	
-					
-				}
-				
-			}catch(Exception e) {
-				e.addSuppressed(e);
-			}
-		}
-		
-	}
+	    alertMessage alert = new alertMessage();
+	    if (login_choose.getSelectionModel().isEmpty()) {
+	        alert.errorMessage("Please select user type");
+	        login_username.setDisable(true);
+	        login_password.setDisable(true);
+	    } else if (login_choose.getValue().equals("Employee")) {
+	        if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
+	            alert.errorMessage("Please fill your username and password field!");
+	        } else {
+	            String selectData = "SELECT * FROM emp_info WHERE username = ? AND password = ?";
+	            connect = connectDB();
+	            try {
+	                prepare = connect.prepareStatement(selectData);
+	                prepare.setString(1, login_username.getText());
+	                prepare.setString(2, login_password.getText());
+	                result = prepare.executeQuery();
+	                if (result.next()) {
+	                    alert.successMessage("Successful");
+	                } else {
+	                    alert.errorMessage("Incorrect username or password");
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    } else if (login_choose.getValue().equals("Admin")) {
+	        if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
+	            alert.errorMessage("Please fill all blank fields");
+	        } else {
+	            String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
+	            connect = connectDB();
+	            try {
+	                prepare = connect.prepareStatement(sql);
+	                prepare.setString(1, login_username.getText());
+	                prepare.setString(2, login_password.getText());
+	                result = prepare.executeQuery();
+	                if (result.next()) {
+	                    getData.username = login_username.getText();
+	                    alert.successMessage("Successfully Login");
+	                    changeScene("dashboard.fxml");
+	                } else {
+	                    alert.errorMessage("Wrong Username/Password");
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	};
+	
+
+
+
+
+
+public void changeScene(String fxmlFileName) {
+	    try {
+	        Parent root = FXMLLoader.load(getClass().getResource(fxmlFileName));
+	        Scene scene = new Scene(root);
+	        Stage stage = (Stage) login_loginbtn.getScene().getWindow();
+	        stage.setScene(scene);
+	        stage.show();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+};
+	
+
+	
+	
 	
 	public void showPassword(){
 		
@@ -453,6 +514,10 @@ public void register() {
 	}
 	
 	
+	 public void close(){
+	        System.exit(0);
+	    }
+	
 	public void sendVerificationCode() throws SendFailedException {
 	    alertMessage alert = new alertMessage();
 	    String username = recover1_username2.getText();
@@ -549,6 +614,22 @@ public void register() {
 	
 	private String[] questionList = {"What is your Favourite Food?","What is your favourite color","What is the name of your pet?"};
 	
+	private String[] chooseType = {"Admin","Employee"};
+	
+	public void questionWho() {
+		List<String> ListQ  =new ArrayList<>();
+		for(String data:chooseType) {
+			
+			ListQ.add(data);
+			
+		}
+		
+		ObservableList ListData = FXCollections.observableArrayList(ListQ);
+		login_choose.setItems(ListData);
+		
+	}
+	
+	
 	public void questions(){
      		
     List<String> ListQ  =new ArrayList<>();
@@ -565,6 +646,7 @@ public void register() {
 	public void initialize(URL url, ResourceBundle rb) {
 		questions();
 		forgetoneList();
+		questionWho();
 		recover1_recoverycode.setDisable(true);
 		
 	}

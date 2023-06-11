@@ -70,6 +70,8 @@ public class dashboardController implements Initializable {
 
     @FXML
     private AnchorPane home_form;
+    
+   
 
     @FXML
     private Label home_totalEmployees;

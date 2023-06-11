@@ -45,6 +45,8 @@ public class SampleController implements Initializable {
 	    
 	    private double x = 0;
 	    private double y = 0;
+	    
+	    
 	    public void loginAdmin(){
 	        
 	        String sql = "SELECT * FROM admin WHERE username = ? and password = ?";
@@ -110,6 +112,8 @@ public class SampleController implements Initializable {
 	    public void close(){
 	        System.exit(0);
 	    }
+	    
+	    
 	    
 	    @Override
 	    public void initialize(URL url, ResourceBundle rb) {
