@@ -70,8 +70,6 @@ public class dashboardController implements Initializable {
 
     @FXML
     private AnchorPane home_form;
-    
-   
 
     @FXML
     private Label home_totalEmployees;
@@ -296,9 +294,17 @@ public class dashboardController implements Initializable {
         Date date = new Date();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-        String sql = "INSERT INTO employee "
-                + "(employee_id,firstName,lastName,gender,phoneNum,position,image,date) "
-                + "VALUES(?,?,?,?,?,?,?,?)";
+        String employeeSql = "INSERT INTO employee "
+                + "(employee_id, firstName, lastName, gender, phoneNum, position, image, date) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        String empInfoSql = "INSERT INTO employee_info "
+                + "(employee_id, firstName, lastName, position, salary, date) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+
+        String empSql = "INSERT INTO emp_info "
+                + "(username, email, password, question, answer) "
+                + "VALUES (?, NULL, NULL, NULL, NULL)";
 
         connect = database.connectDb();
 
@@ -328,11 +334,11 @@ public class dashboardController implements Initializable {
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Employee ID: " + addEmployee_employeeID.getText() + " was already exist!");
+                    alert.setContentText("Employee ID: " + addEmployee_employeeID.getText() + " already exists!");
                     alert.showAndWait();
                 } else {
 
-                    prepare = connect.prepareStatement(sql);
+                    prepare = connect.prepareStatement(employeeSql);
                     prepare.setString(1, addEmployee_employeeID.getText());
                     prepare.setString(2, addEmployee_firstName.getText());
                     prepare.setString(3, addEmployee_lastName.getText());
@@ -347,17 +353,17 @@ public class dashboardController implements Initializable {
                     prepare.setString(8, String.valueOf(sqlDate));
                     prepare.executeUpdate();
 
-                    String insertInfo = "INSERT INTO employee_info "
-                            + "(employee_id,firstName,lastName,position,salary,date) "
-                            + "VALUES(?,?,?,?,?,?)";
-
-                    prepare = connect.prepareStatement(insertInfo);
+                    prepare = connect.prepareStatement(empInfoSql);
                     prepare.setString(1, addEmployee_employeeID.getText());
                     prepare.setString(2, addEmployee_firstName.getText());
                     prepare.setString(3, addEmployee_lastName.getText());
                     prepare.setString(4, (String) addEmployee_position.getSelectionModel().getSelectedItem());
                     prepare.setString(5, "0.0");
                     prepare.setString(6, String.valueOf(sqlDate));
+                    prepare.executeUpdate();
+
+                    prepare = connect.prepareStatement(empSql);
+                    prepare.setString(1, addEmployee_firstName.getText() + "123");
                     prepare.executeUpdate();
 
                     alert = new Alert(AlertType.INFORMATION);
@@ -374,7 +380,6 @@ public class dashboardController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void addEmployeeUpdate() {
@@ -848,7 +853,7 @@ public class dashboardController implements Initializable {
             if (option.get().equals(ButtonType.OK)) {
 
                 logout.getScene().getWindow().hide();
-                Parent root = FXMLLoader.load(getClass().getResource("Sample.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("Signin.fxml"));
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
 

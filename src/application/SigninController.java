@@ -237,7 +237,11 @@ public class SigninController implements Initializable {
 	                prepare.setString(2, login_password.getText());
 	                result = prepare.executeQuery();
 	                if (result.next()) {
-	                    alert.successMessage("Successful");
+//	                  
+	                	getData.empUsername = login_username.getText(); 
+	                	changeScene("employee.fxml");
+//	                    changeScene2("employee.fxml",login_username.getText());
+	                    
 	                } else {
 	                    alert.errorMessage("Incorrect username or password");
 	                }
@@ -271,7 +275,21 @@ public class SigninController implements Initializable {
 	};
 	
 
-
+public void changeScene2(String fxml, String name) {
+	    try {
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(getClass().getResource(fxml));
+	        Parent root = loader.load();
+	        Scene scene = new Scene(root);
+	        employeeController employeeController = loader.getController();
+	        employeeController.username = name;
+	        Stage stage = (Stage) login_loginbtn.getScene().getWindow();
+	        stage.setScene(scene);
+	        stage.show();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 
 
 

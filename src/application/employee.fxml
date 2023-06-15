@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.employeeController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane layoutY="53.0" prefHeight="445.0" prefWidth="254.0">
+               <children>
+                  <FontAwesomeIcon glyphName="USER" layoutX="82.0" layoutY="126.0" size="3cm" />
+                  <Label fx:id="label_welcome" layoutX="87.0" layoutY="161.0" text="Welcome">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="employeeHomebtn" layoutX="33.0" layoutY="244.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="32.0" prefWidth="190.0" text="Home">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="HOME" size="2em" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Line endX="100.0" layoutX="127.0" layoutY="196.0" startX="-100.0" />
+                  <Button fx:id="employeeInformationbtn" layoutX="33.0" layoutY="276.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="32.0" prefWidth="190.0" text="  Information">
+                     <graphic>
+                        <FontAwesomeIcon glyphName="INFO" size="1.8em" />
+                     </graphic>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="14.0" layoutY="406.0" mnemonicParsing="false">
+                     <graphic>
+                        <FontAwesomeIcon fx:id="employeeHomelogoutbtn" glyphName="SIGN_OUT" onMouseClicked="#back" size="2em" />
+                     </graphic>
+                  </Button>
+                  <Label layoutX="59.0" layoutY="414.0" text="LOGOUT" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="-2.0" prefHeight="47.0" prefWidth="800.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="354.0" layoutY="13.0" text="    Employee Management System ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <FontAwesomeIcon glyphName="USERS" layoutX="320.0" layoutY="32.0" size="2em" />
+                  <Button fx:id="close" layoutX="754.0" layoutY="10.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="40.0">
+                     <graphic>
+                        <FontAwesomeIcon fx:id="employeeHeaderClose" glyphName="CLOSE" onMouseClicked="#close" />
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="254.0" layoutY="47.0" prefHeight="453.0" prefWidth="546.0">
+               <children>
+                  <AnchorPane fx:id="homeForm" prefHeight="453.0" prefWidth="546.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="139.0" layoutY="63.0" prefHeight="206.0" prefWidth="254.0" style="-fx-background-color: blue;">
+                           <children>
+                              <FontAwesomeIcon glyphName="USERS" layoutX="26.0" layoutY="95.0" size="4em" />
+                              <Label layoutX="20.0" layoutY="150.0" text="Total Employee Present">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="homeCountlabel" layoutX="187.0" layoutY="54.0" text="0">
+                                 <font>
+                                    <Font name="Arial Bold" size="54.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="homePresentbtn" layoutX="115.0" layoutY="307.0" mnemonicParsing="false" onAction="#present" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: brown;" text="Present">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Button>
+                        <FontAwesomeIcon glyphName="CHECK" layoutX="115.0" layoutY="334.0" size="2em" />
+                        <Button fx:id="homeAbsentLabel" layoutX="328.0" layoutY="307.0" mnemonicParsing="false" onAction="#absent" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: brown;" text="Absent">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon glyphName="MINUS" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="informationForm" prefHeight="453.0" prefWidth="546.0">
+                     <children>
+                        <ComboBox fx:id="informationHome_choose" layoutX="41.0" layoutY="265.0" prefHeight="25.0" prefWidth="181.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="211.0" prefHeight="32.0" prefWidth="350.0" text="Change Data for the Security Question and Answer" />
+                        <Label layoutX="31.0" layoutY="72.0" prefHeight="24.0" prefWidth="100.0" text="Email Address">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="27.0" layoutY="137.0" prefHeight="24.0" prefWidth="115.0" text="Security Question">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <TextField fx:id="informaitonHome_Question" layoutX="177.0" layoutY="136.0" prefHeight="25.0" prefWidth="156.0" />
+                        <TextField fx:id="informationHome_questionAnswer" layoutX="363.0" layoutY="136.0" prefHeight="25.0" prefWidth="156.0" />
+                        <TextField fx:id="informationHome_email" layoutX="173.0" layoutY="72.0" prefHeight="25.0" prefWidth="156.0" />
+                        <TextField fx:id="informationHome_answer" layoutX="268.0" layoutY="265.0" prefHeight="25.0" prefWidth="190.0" />
+                        <Button fx:id="informationHome_databtn" layoutX="214.0" layoutY="320.0" mnemonicParsing="false" onAction="#update" text="Update Data" />
+                        <Label layoutX="31.0" layoutY="27.0" text="Username">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="Usernametxt" layoutX="173.0" layoutY="25.0" prefHeight="25.0" prefWidth="156.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

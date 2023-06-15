@@ -31,7 +31,7 @@
             <Button fx:id="login_createAccountbtn" layoutX="101.0" layoutY="426.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="32.0" prefWidth="220.0" text="Create Account" />
             <Hyperlink fx:id="login_forgetPassword" layoutX="220.0" layoutY="253.0" onAction="#switchForm" text="Forget Password?" />
             <FontAwesomeIcon fx:id="login_close" glyphName="CLOSE" layoutX="322.0" layoutY="40.0" onMouseClicked="#close" size="2.5em" />
-            <ComboBox fx:id="login_choose" layoutX="22.0" layoutY="165.0" prefHeight="25.0" prefWidth="49.0" />
+            <ComboBox fx:id="login_choose" layoutX="14.0" layoutY="165.0" prefHeight="25.0" prefWidth="58.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="signup_form" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false">
