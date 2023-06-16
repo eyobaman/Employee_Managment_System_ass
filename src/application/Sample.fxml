@@ -30,7 +30,7 @@
                         <Font name="Tahoma Bold" size="17.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="username" layoutX="40.0" layoutY="144.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Username" styleClass="textfield" stylesheets="@application.css" />
+                  <TextField fx:id="username" layoutX="40.0" layoutY="144.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="219.0" promptText="Username" styleClass="textfield" stylesheets="@application.css" />
                   <PasswordField fx:id="password" layoutX="40.0" layoutY="185.0" onAction="#loginAdmin" prefHeight="30.0" prefWidth="220.0" promptText="Password" styleClass="textfield" stylesheets="@application.css" />
                   <Button fx:id="loginBtn" layoutX="40.0" layoutY="238.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@application.css" text="Login" />
                   <Button fx:id="close" layoutX="248.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="58.0" styleClass="close" stylesheets="@application.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">

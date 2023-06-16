@@ -222,12 +222,12 @@ public class SigninController implements Initializable {
 	public void login() {
 	    alertMessage alert = new alertMessage();
 	    if (login_choose.getSelectionModel().isEmpty()) {
-	        alert.errorMessage("Please select user type");
+	        alert.errorMessage("Please Select user type");
 	        login_username.setDisable(true);
 	        login_password.setDisable(true);
 	    } else if (login_choose.getValue().equals("Employee")) {
 	        if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
-	            alert.errorMessage("Please fill your username and password field!");
+	            alert.errorMessage("Please fill your username and password field try again");
 	        } else {
 	            String selectData = "SELECT * FROM emp_info WHERE username = ? AND password = ?";
 	            connect = connectDB();
